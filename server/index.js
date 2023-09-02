@@ -7,12 +7,10 @@ app.use(cors());
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const chatAppCtrl = require('./controllers/controler')
-const DBURL = process.env.DBURL
+require('dotenv').config();
 
-console.log(DBURL)
 
-const dbUri = DBURL;
-
+const dbUri = process.env.DBURL;
 const connectDB = async () => {
   try {
       await mongoose.connect(dbUri, {
@@ -58,6 +56,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING");
+server.listen(process.env.PORT, () => {
+  console.log("SERVER RUNNING on Port: " + process.env.PORT);
 });
