@@ -7,9 +7,11 @@ app.use(cors());
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const chatAppCtrl = require('./controllers/controler')
+const DBURL = process.env.DBURL
 
+console.log(DBURL)
 
-const dbUri = `mongodb+srv://manojpbimp:mII0iaSNtEwfjl1l@cluster1.zi3scee.mongodb.net/`;
+const dbUri = DBURL;
 
 const connectDB = async () => {
   try {
