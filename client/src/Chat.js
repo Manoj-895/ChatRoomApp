@@ -22,7 +22,7 @@ function Chat({ socket, username, room }) {
       setMessageList((list) => [...list, messageData]);
       try {
         console.log("In handler")
-        let res = await axios.post('/sendmessages', { message: { messageData }, room: room })
+        let res = await axios.post('https://chatappbackend-5rm0.onrender.com/sendmessages', { message: { messageData }, room: room })
         console.log(res)
       } catch (err) {
         console.log(err.responce.data.message);
@@ -33,7 +33,7 @@ function Chat({ socket, username, room }) {
 
   useEffect(() => {
     async function sendMessage() {
-      let res = await axios.post('/getmessages', { room: room })
+      let res = await axios.post('https://chatappbackend-5rm0.onrender.com/getmessages', { room: room })
       console.log(res.data, "responce")
       if (res.data.length > 0) {
         setMessageList([...res.data])
